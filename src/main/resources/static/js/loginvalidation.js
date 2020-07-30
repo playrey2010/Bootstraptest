@@ -41,5 +41,12 @@ function validate() {
         formIsOkay = false;
     }
 
+    // else if (!password.replace(/[a-z]/g, '').length) { // if the replace().length comes back as 0, it means all letters are lower case
+    //     passwordError.innerHTML = "Password must have at least 1 upper case letter";
+    //     formIsOkay = false;
+    //
+    //
+    // }
+
     return formIsOkay;
 }

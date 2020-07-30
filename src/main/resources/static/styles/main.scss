@@ -1,0 +1,11 @@
+$theme-colors: (
+
+        "danger": #FABC2A,
+        "primary": #7b35d0,
+        "warning": #F75590
+);
+
+$border-radius : 10rem;
+
+
+@import "../node_modules/bootstrap/scss/bootstrap";

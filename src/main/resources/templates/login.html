@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link th:href="@{/styles/base.css}" rel="stylesheet">
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"-->
+<!--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+<!--    <link rel="stylesheet" href="https://www.jqueryscript.net/demo/Simple-Password-Strength-Checker-With-jQuery-Password-Validator/dist/jquery-password-validator.css">-->
+    <link rel="stylesheet" th:href="@{/styles/main.css}" >
     <title>Login Page</title>
 </head>
 <body>
+<nav th:replace="index::navbar"></nav>
 <h1>Login Page</h1>
 <div th:if="${param.error}">
     Invalid username or password
@@ -18,33 +20,48 @@
 </div>
 <form onsubmit="return validate()" th:action="@{/login}" method="post">
     <div>
-        <label>Username: <input type="text" name="username" id="username">
+        <label>Username: <input type="text" name="username" class="form-control" id="username">
             <span id="user-error-message"></span>
         </label>
     </div>
     <div>
 
-        <label>Password: <input type="password" name="password" id="password">
+        <label>Password: <input type="password" name="password" class="form-control" id="password">
             <span id="password-error-message"></span>
         </label>
     </div>
     <div>
-        <input type="submit" value="Sign in">
+        <input type="submit" class="btn btn-primary" value="Sign in">
     </div>
 </form>
 
 
+<script th:src="@{/node_modules/jquery/jquery.min.js}"></script>
+<script th:src="@{/node_modules/popperjs/core/dist/umd/popper.min.js}"></script>
+<script th:src="@{/node_modules/bootstrap/dist/js/bootstrap.min.js}"></script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"-->
+<!--        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"-->
+<!--        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"-->
+<!--        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>-->
+<!--<script src="https://www.jqueryscript.net/demo/Simple-Password-Strength-Checker-With-jQuery-Password-Validator/dist/jquery.password-validator.js">-->
+<!--</script>-->
 <script th:src="@{/js/loginvalidation.js}">
+
+</script>
+<script>
+    // $(function () {
+    //     $("#password").passwordValidator({
+    //         require: ['length', 'lower', 'upper'],
+    //         length: 8
+    //     });
+    // });
 
 </script>
 </body>
