@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -16,15 +17,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeRequests().antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/js/**", "/styles/**", "/node_modules/**").permitAll()
-                .antMatchers("/register").hasRole("ADMIN")
+        httpSecurity.authorizeRequests()
+                .antMatchers("/js/**", "/styles/**", "/node_modules/**", "/departmentList", "/department/{id}", "/", "/h2-console/**").permitAll()
+                .antMatchers("/admin","/register", "/addDepartment", "/updateDepartment/**",
+                        "/addEmployee", "/updateEmployee/**").hasRole("ADMIN")
                 .antMatchers("/**").hasAnyRole("ADMIN", "USER")
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .and()
                 .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout=true").permitAll();
 
         // for accessing H2 console

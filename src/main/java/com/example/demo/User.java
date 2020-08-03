@@ -15,7 +15,6 @@ public class User {
     private long id;
 
     @Column(name = "username")
-    @Size(min = 3)
     private String username;
 
     @Column
@@ -43,7 +42,7 @@ public class User {
 
     }
 
-    public User(@Size(min = 3) String username,
+    public User(String username,
                 @NotEmpty @NotNull String email,
                 @NotEmpty @NotNull String password,
                 @NotEmpty @NotNull String firstName,

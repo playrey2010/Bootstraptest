@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <!-- Bootstrap CSS -->
@@ -7,37 +7,79 @@
 <!--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
 <!--    <link rel="stylesheet" href="https://www.jqueryscript.net/demo/Simple-Password-Strength-Checker-With-jQuery-Password-Validator/dist/jquery-password-validator.css">-->
     <link rel="stylesheet" th:href="@{/styles/main.css}" >
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
     <title>Login Page</title>
 </head>
 <body>
-<nav th:replace="index::navbar"></nav>
-<h1>Login Page</h1>
-<div th:if="${param.error}">
-    Invalid username or password
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" th:href="@{/}">My Company</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span> </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" th:href="@{/departmentList}" id="dptDrowdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Our Departments</a>
+                <div class="dropdown-menu" aria-labelledby="dptDrowdown">
+                    <div class="list-group">
+                        <a th:each="department: ${departments}" class="list-group-item list-group-item-action" th:href="@{/department/{id}(id=${department.id})}" th:text="${department.name}"></a>
+                    </div>
+                </div>
+            </li>
+<!--            <li sec:authorize="!isAuthenticated()" class="nav-item">-->
+<!--                <a class="nav-link" th:href="@{/login}">Login</a>-->
+<!--            </li>-->
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <a class="nav-link" href="javascript:{}" onclick="document.getElementById('logout').submit();">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!--hidden logout form-->
+<form id="logout" th:action="@{/logout}" method="post" style="display: none"></form>
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+
+            <h1>Login Page</h1>
+            <div th:if="${param.error}">
+                Invalid username or password
+            </div>
+            <div th:if="${param.logout}">
+                You have been successfully logged out
+            </div>
+            <form onsubmit="return validate()" th:action="@{/login}" method="post">
+                <div class="form-group">
+                    <label>Username: <input type="text" name="username" class="form-control" id="username">
+                        <span id="user-error-message"></span>
+                    </label>
+                </div>
+                <div class="form-group">
+
+                    <label>Password: <input type="password" name="password" class="form-control" id="password">
+                        <span id="password-error-message"></span>
+                    </label>
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-primary btn-lg" value="Sign in">
+                </div>
+            </form>
+
+
+
+        </div>
+    </div>
 </div>
-<div th:if="${param.logout}">
-    You have been successfully logged out
-</div>
-<form onsubmit="return validate()" th:action="@{/login}" method="post">
-    <div>
-        <label>Username: <input type="text" name="username" class="form-control" id="username">
-            <span id="user-error-message"></span>
-        </label>
-    </div>
-    <div>
-
-        <label>Password: <input type="password" name="password" class="form-control" id="password">
-            <span id="password-error-message"></span>
-        </label>
-    </div>
-    <div>
-        <input type="submit" class="btn btn-primary" value="Sign in">
-    </div>
-</form>
 
 
-<script th:src="@{/node_modules/jquery/jquery.min.js}"></script>
-<script th:src="@{/node_modules/popperjs/core/dist/umd/popper.min.js}"></script>
+
+<script th:src="@{/node_modules/jquery/dist/jquery.min.js}"></script>
+<script th:src="@{/node_modules/@popperjs/core/dist/umd/popper.min.js}"></script>
 <script th:src="@{/node_modules/bootstrap/dist/js/bootstrap.min.js}"></script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"-->

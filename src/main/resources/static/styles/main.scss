@@ -1,11 +1,15 @@
-$theme-colors: (
 
-        "danger": #FABC2A,
-        "primary": #7b35d0,
-        "warning": #F75590
-);
-
-$border-radius : 10rem;
+//$primary: #7b35d0;
+//$black: #102b32;
+//$white: #f1ab14;
 
 
+@import "vars";
+@import "customBootstrap";
 @import "../node_modules/bootstrap/scss/bootstrap";
+// for navbar with dropdown as pill
+.dropdown-menu {
+  padding: 0 0;
+  border: 0px solid rgba(0, 0, 0, 0.15);
+}
+

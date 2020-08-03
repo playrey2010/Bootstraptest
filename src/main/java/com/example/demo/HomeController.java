@@ -21,20 +21,9 @@ public class HomeController {
     @Autowired
     RoleRepository roleRepository;
 
-    @RequestMapping("/")
-    public String index(){
-        return "index";
-    }
 
-    @RequestMapping("/login")
-    public String login(){
-        return "login";
-    }
 
-    @PostMapping("/logout")
-    public String logout() {
-        return "redirect:/login?logout=true";
-    }
+
 
 
     @RequestMapping("/admin")
