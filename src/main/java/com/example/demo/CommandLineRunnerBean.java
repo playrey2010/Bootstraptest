@@ -15,8 +15,12 @@ public class CommandLineRunnerBean implements CommandLineRunner {
     @Autowired
     DepartmentRepository departmentRepository;
 
+    @Autowired
+    EmployeeRepository employeeRepository;
+
     public void run(String... args){
 
+        // Preloading users and roles
         User user = new User("bart", "bart@domain.com", "bart", "Bart", "Simpson",
                 true);
         Role userRole = new Role("bart", "ROLE_USER");
@@ -32,20 +36,46 @@ public class CommandLineRunnerBean implements CommandLineRunner {
         roleRepository.save(adminRole2);
 
         // preloading departments
-        Department healthDpt = new Department();
-        healthDpt.setName("Health");
-        Department hrDpt = new Department();
-        hrDpt.setName("Human Resources");
-        Department accountingDpt = new Department();
-        accountingDpt.setName("Accounting");
-        Department businessDpt = new Department();
-        businessDpt.setName("Business");
+        Department mathDepartment = new Department();
+        mathDepartment.setName("Math");
+        mathDepartment.setBackgroundPhoto("/images/badAtMath.jpg");
+        Department histSsDpt = new Department();
+        histSsDpt.setName("History & Social Sciences");
+        histSsDpt.setBackgroundPhoto("/images/historybg.jpg");
+        Department csDpt = new Department();
+        csDpt.setName("Computer Science");
+        csDpt.setBackgroundPhoto("/images/csbg.jpg");
+        Department artDpt = new Department();
+        artDpt.setName("Art");
+        artDpt.setBackgroundPhoto("/images/artbg.jpg");
+
+        departmentRepository.save(mathDepartment);
+        departmentRepository.save(histSsDpt);
+        departmentRepository.save(csDpt);
+        departmentRepository.save(artDpt);
 
 
-        departmentRepository.save(healthDpt);
-        departmentRepository.save(hrDpt);
-        departmentRepository.save(accountingDpt);
-        departmentRepository.save(businessDpt);
+
+        // adding employees
+        Employee employee1 = new Employee();
+        employee1.setJobTitle("Geometry Instructor");
+        employee1.setName("Michael Murray");
+        employee1.setDepartment(mathDepartment);
+
+        Employee employee2 = new Employee();
+        employee2.setName("Katsuhiro Harada");
+        employee2.setJobTitle("Algebra Instructor");
+        employee2.setDepartment(mathDepartment);
+
+        Employee employee3 = new Employee();
+        employee3.setName("Dwayne Johnson");
+        employee3.setJobTitle("Calculus Instructor");
+        employee3.setDepartment(mathDepartment);
+
+        // saving employee objects
+        employeeRepository.save(employee1);
+        employeeRepository.save(employee2);
+        employeeRepository.save(employee3);
     }
 
 }

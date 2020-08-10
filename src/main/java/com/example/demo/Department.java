@@ -12,6 +12,8 @@ public class Department {
 
     private String name;
 
+    private String backgroundPhoto;
+
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Employee> employees = new HashSet<>();
 
@@ -29,6 +31,14 @@ public class Department {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getBackgroundPhoto() {
+        return backgroundPhoto;
+    }
+
+    public void setBackgroundPhoto(String backgroundPhoto) {
+        this.backgroundPhoto = backgroundPhoto;
     }
 
     public Set<Employee> getEmployees() {

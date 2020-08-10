@@ -5,12 +5,52 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" th:href="@{/styles/main.css}">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ee449a916d.js" crossorigin="anonymous"></script>
     <title>Index Page</title>
 </head>
-<body>
+<body class="bg-secondary">
 <nav th:replace="login::navbar"></nav>
-
-
+<div class="jumbotron jumbotron-fluid">
+    <video id="video-background" preload autoplay muted loop>
+        <source th:src="@{/videos/boardMeeting.mp4}" type="video/mp4">
+    </video>
+    <div class="container text-white text-center">
+        <h1 class="display-4">Excel in any subject</h1>
+        <p class="lead">Our tutors will take guide you in your journey to master any subject.</p>
+        <a href="#" class="btn btn-outline-secondary btn-lg" role="button">See our tutors</a>
+    </div>
+</div>
+<div class="container-fluid text-white">
+    <div class="row">
+        <div class="col-12 text-center p-4 mb-md-4">
+            <h1 class="display-4">Our success stories</h1>
+        </div>
+    </div>
+    <div class="row mb-sm-5">
+        <div class="col-md-8 text-center">
+            <img id="success-story-1" class="img" src="https://www.unh.edu/unhtoday/sites/default/files/styles/article_huge/public/article/2019/professional_woman_headshot.jpg?itok=3itzxHXh" alt="Success story 1">
+        </div>
+        <div class="col-md-4">
+            <h2>The Owner</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices in iaculis nunc sed.</p>
+        </div>
+    </div>
+    <div class="row w-100"><hr></div>
+    <div class="row mb-sm-5">
+        <div class="col-md-8 text-center">
+            <img id="success-story-2" class="img" src="https://res.cloudinary.com/playrey/image/upload/v1597066636/gregory-hayes-2guarBycJJQ-unsplash_sabpho.jpg" alt="Success story 2">
+        </div>
+        <div class="col-md-4">
+            <h2>Bob Richards</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices in iaculis nunc sed.</p>
+        </div>
+    </div>
+</div>
+<footer class="footer bg-primary">
+    <div class="container text-center text-white">
+        <i class="fab fa-twitter-square"></i>
+    </div>
+</footer>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script th:src="@{/node_modules/jquery/dist/jquery.min.js}"></script>
 <script th:src="@{/node_modules/@popperjs/core/dist/umd/popper.min.js}"></script>

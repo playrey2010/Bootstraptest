@@ -38,6 +38,7 @@ public class CompanyController {
     public String viewDepartment(Model model, @PathVariable long id){
         Department department = departmentRepository.findById(id).get();
         model.addAttribute("department", department);
-        return "viewDepartment";
+        model.addAttribute("departments",departmentRepository.findAll());
+        return "department";
     }
 }
