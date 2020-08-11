@@ -41,8 +41,7 @@
     <input type="text" id="username" placeholder="Username"
            th:field="*{username}"/>
     <mark><strong>
-            <span th:if="${#fields.hasErrors('username')}"
-                  th:errors="*{username}"> </span>
+            <span th:text="${message}"> </span>
     </strong></mark>
     <br/>
     Password

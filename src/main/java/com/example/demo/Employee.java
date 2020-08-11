@@ -10,11 +10,17 @@ public class Employee {
 
     private String name;
 
+    private String photo;
+
     private String jobTitle;
+
+    private boolean employed = true;
 
     @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
+
+
 
     public long getId() {
         return id;
@@ -32,12 +38,28 @@ public class Employee {
         this.name = name;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
     public String getJobTitle() {
         return jobTitle;
     }
 
     public void setJobTitle(String jobTitle) {
         this.jobTitle = jobTitle;
+    }
+
+    public boolean isEmployed() {
+        return employed;
+    }
+
+    public void setEmployed(boolean employed) {
+        this.employed = employed;
     }
 
     public Department getDepartment() {

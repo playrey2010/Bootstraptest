@@ -1,24 +1,106 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/styles/main.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ee449a916d.js" crossorigin="anonymous"></script>
     <title>Admin Page</title>
 </head>
-<body>
-<h1>Admin Page</h1>
+<body class="bg-secondary text-white">
+<div id="page-container">
+    <div id="content-wrap">
+        <nav th:replace="base::navbar"></nav>
+        <div class="container my-auto">
+            <div class="row my-4">
+                <div class="col">
+                    <table class="table.responsive mx-auto">
+                        <thead class="text-center">
+                            <tr>
+                                <th scope="col">Department Name</th>
+                                <th scope="col">Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="department: ${departments}">
+                                <td th:text="${department.name}"></td>
+                                <td><a th:href="@{/updateDepartment/{id} (id=${department.id})}" class="btn btn-warning">Update</a></td>
+                            </tr>
+
+                        </tbody>
+                        <tfoot>
+                        <td colspan="2">
+                            <a th:href="@{/addDepartment}" class="btn btn-danger btn-block">Add Department</a>
+                        </td>
+                        </tfoot>
+
+                    </table>
+
+
+                </div>
+            </div>
+            <div class="row my-5">
+                <div class="col">
+                    <table class="table.responsive mx-auto">
+                        <thead class="text-center">
+                            <tr>
+                                <th scope="col">Employee Name</th>
+                                <th scope="col">Job Title</th>
+                                <th scope="col">Department</th>
+                                <th scope="col">Employed</th>
+                                <th colspan="2">Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <th:block th:each="department : ${departments}">
+                            <tr th:each="employee :${department.employees}">
+                                <td th:text="${employee.name}"></td>
+                                <td th:text="${employee.jobTitle}"></td>
+                                <td th:text="${employee.department.name}"></td>
+                                <th:block th:switch="${employee.employed}">
+                                    <td th:case="true">Yes</td>
+                                    <td th:case="false" class="text-warning">No</td>
+                                </th:block>
+                                <td>
+                                    <a th:href="@{/updateEmployee/{id} (id=${employee.id})}" class="btn btn-warning">Update</a>
+                                </td>
+                                <td>
+                                    <a th:href="@{/changeEmployeeStatus/{id} (id=${employee.id})}" class="btn btn-danger">Change Status</a>
+                                </td>
+                            </tr>
+                        </th:block>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <footer th:replace="index::footer"></footer>
+    </div>
+</div>
+
+
+
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+<script th:src="@{/node_modules/jquery/dist/jquery.min.js}"></script>
+<script th:src="@{/node_modules/@popperjs/core/dist/umd/popper.min.js}"></script>
+<script th:src="@{/node_modules/bootstrap/dist/js/bootstrap.min.js}"></script>
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"-->
+<!--        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"-->
+<!--        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"-->
+<!--        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"-->
+<!--        crossorigin="anonymous"></script>-->
 </body>
 </html>

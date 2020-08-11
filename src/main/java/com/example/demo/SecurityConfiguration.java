@@ -19,7 +19,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
                 .antMatchers("/js/**", "/styles/**", "/images/**", "/node_modules/**", "/videos/**", "/departmentList", "/department/{id}", "/", "/h2-console/**").permitAll()
-                .antMatchers("/admin","/register", "/addDepartment", "/updateDepartment/**",
+                .antMatchers("/admin","/register", "/addDepartment", "/updateDepartment/**", "/processDepartment",
                         "/addEmployee", "/updateEmployee/**").hasRole("ADMIN")
                 .antMatchers("/**").hasAnyRole("ADMIN", "USER")
                 .and()

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/styles/main.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ee449a916d.js" crossorigin="anonymous"></script>
+    <title>Department form</title>
+</head>
+<body class="bg-secondary text-white">
+<div class="page-container">
+    <div class="content-wrap">
+        <nav th:replace="base::navbar"></nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <form th:action="@{/processDepartment}" th:object="${department}" enctype="multipart/form-data" method="post">
+                        <input type="hidden" th:field="*{id}">
+                        <input type="hidden" th:field="*{backgroundPhoto}">
+                        <input type="hidden" th:field="*{employees}">
+                        <div class="form-group">
+                            <label>
+                                Department Name:
+                            <input type="text" th:field="*{name}" class="form-control">
+
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="fileform">
+                                Banner photo:
+                                <input id="fileform" type="file" name="file" class="form-control-file">
+
+                            </label>
+
+                        </div>
+
+                        <div>
+                            <input type="submit" class="btn btn-primary btn-lg" value="Submit">
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <footer th:replace="index::footer"></footer>
+    </div>
+</div>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script th:src="@{/node_modules/jquery/dist/jquery.min.js}"></script>
+<script th:src="@{/node_modules/@popperjs/core/dist/umd/popper.min.js}"></script>
+<script th:src="@{/node_modules/bootstrap/dist/js/bootstrap.min.js}"></script>
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"-->
+<!--        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"-->
+<!--        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"-->
+<!--        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"-->
+<!--        crossorigin="anonymous"></script>-->
+</body>
+</html>

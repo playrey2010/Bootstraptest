@@ -23,14 +23,6 @@ public class HomeController {
 
 
 
-
-
-
-    @RequestMapping("/admin")
-    public String admin () {
-        return "admin";
-    }
-
     @RequestMapping("/secure")
     public String secure(Principal principal, Model model){
         String username = principal.getName();
@@ -52,7 +44,7 @@ public class HomeController {
             model.addAttribute("user", user);
             return "register";
         }
-        else {
+        else if (!userRepository.existsByUsername(user.getUsername())) {
             model.addAttribute("user", user);
             model.addAttribute("message", "New user account created");
             user.setEnabled(true);
@@ -60,8 +52,12 @@ public class HomeController {
 
             Role role = new Role(user.getUsername(), "ROLE_USER");
             roleRepository.save(role);
+            return "index";
         }
-        return "index";
+        else {
+            model.addAttribute("message", "Username already taken");
+            return "register";
+        }
     }
 
 }
