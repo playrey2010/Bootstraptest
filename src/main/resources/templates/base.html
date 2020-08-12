@@ -22,8 +22,8 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="dptDrowdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Our Departments</a>
-                <div class="dropdown-menu" aria-labelledby="dptDrowdown">
-                    <div class="list-group">
+                <div class="dropdown-menu roundborder" aria-labelledby="dptDrowdown" >
+                    <div class="list-group roundborder">
                         <a th:each="department: ${departments}" class="list-group-item list-group-item-action" th:href="@{/department/{id}(id=${department.id})}" th:text="${department.name}"></a>
                     </div>
                 </div>

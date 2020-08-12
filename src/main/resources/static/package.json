@@ -6,6 +6,7 @@
   "dependencies": {
     "@popperjs/core": "^2.4.4",
     "bootstrap": "^4.5.0",
+    "bootstrap-select": "^1.13.18",
     "jquery": "^3.5.0",
     "popper.js": "^1.16.0"
   },

@@ -64,3 +64,16 @@
   font-size: 1.4rem;
   padding-top: .4rem;
 }
+#bs-select-1 {
+  border-radius: 0;
+  ul {
+    border-radius: 0;
+  }
+  li {
+    border-radius: 0;
+  }
+}
+
+.roundborder {
+  border-radius: 10rem !important;
+}
