@@ -42,8 +42,9 @@
             </div>
             <div class="row my-5">
                 <div class="col">
-                    <table class="table.responsive mx-auto">
-                        <thead class="text-center">
+                    <div class="table-responsive-md">
+                        <table class="table mx-auto text-white">
+                            <thead class="text-center">
                             <tr>
                                 <th scope="col">Employee Name</th>
                                 <th scope="col">Job Title</th>
@@ -51,33 +52,36 @@
                                 <th scope="col">Employed</th>
                                 <th colspan="2">Edit</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                        <th:block th:each="department : ${departments}">
-                            <tr th:each="employee :${#lists.sort(department.employees, byName)}">
-                                <td th:text="${employee.name}"></td>
-                                <td th:text="${employee.jobTitle}"></td>
-                                <td th:text="${employee.department.name}"></td>
-                                <th:block th:switch="${employee.employed}">
-                                    <td th:case="true">Yes</td>
-                                    <td th:case="false" class="text-warning">No</td>
-                                </th:block>
-                                <td>
-                                    <a th:href="@{/updateEmployee/{id} (id=${employee.id})}" class="btn btn-warning">Update</a>
-                                </td>
-                                <td>
-                                    <a th:href="@{/changeEmployeeStatus/{id} (id=${employee.id})}" class="btn btn-danger">Change Status</a>
-                                </td>
-                            </tr>
-                        </th:block>
+                            </thead>
+                            <tbody>
+                            <th:block th:each="department : ${departments}">
+                                <tr th:each="employee :${#lists.sort(department.employees, byName)}">
+                                    <td th:text="${employee.name}"></td>
+                                    <td th:text="${employee.jobTitle}"></td>
+                                    <td th:text="${employee.department.name}"></td>
+                                    <th:block th:switch="${employee.employed}">
+                                        <td th:case="true">Yes</td>
+                                        <td th:case="false" class="text-warning">No</td>
+                                    </th:block>
+                                    <td>
+                                        <a th:href="@{/updateEmployee/{id} (id=${employee.id})}"
+                                           class="btn btn-warning">Update</a>
+                                    </td>
+                                    <td>
+                                        <a th:href="@{/changeEmployeeStatus/{id} (id=${employee.id})}"
+                                           class="btn btn-danger">Change Status</a>
+                                    </td>
+                                </tr>
+                            </th:block>
 
-                        </tbody>
-                        <tfoot>
-                        <td colspan="2">
-                            <a th:href="@{/addEmployee}" class="btn btn-danger btn-block">Add Employee</a>
-                        </td>
-                        </tfoot>
-                    </table>
+                            </tbody>
+                            <tfoot>
+                            <td colspan="6">
+                                <a th:href="@{/addEmployee}" class="btn btn-danger btn-block">Add Employee</a>
+                            </td>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
