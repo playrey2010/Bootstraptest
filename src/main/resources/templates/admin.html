@@ -54,7 +54,7 @@
                         </thead>
                         <tbody>
                         <th:block th:each="department : ${departments}">
-                            <tr th:each="employee :${department.employees}">
+                            <tr th:each="employee :${#lists.sort(department.employees, byName)}">
                                 <td th:text="${employee.name}"></td>
                                 <td th:text="${employee.jobTitle}"></td>
                                 <td th:text="${employee.department.name}"></td>

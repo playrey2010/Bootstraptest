@@ -32,7 +32,7 @@
                     <h1 class="display-4">Our instructors</h1>
                 </div>
             </div>
-            <div th:each="employee : ${department.employees}" class="row mb-md-5">
+            <div th:each="employee : ${department.employees}" th:if="${employee.employed}" class="row mb-md-5">
                 <div class="col-md-8 text-center">
                     <img class="instructor-photo img" th:src="${employee.photo}" th:alt="${employee.name}">
                 </div>
