@@ -14,6 +14,10 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
+
+        #banner-text {
+            background-color: rgba(28, 68, 142, 0.7);
+        }
     </style>
 </head>
 <body class="bg-secondary">
@@ -21,7 +25,7 @@
     <div id="content-wrap">
         <nav th:replace="base::navbar-department"></nav>
         <div class="jumbotron jumbotron-fluid" th:style="'background-image: url('+${department.backgroundPhoto} +')'">
-            <div class="container text-white text-center">
+            <div class="container text-white text-center" id="banner-text">
                 <h1 class="display-4">[[${department.name}]]</h1>
                 <p class="lead">Our [[${department.name}]] department </p>
             </div>

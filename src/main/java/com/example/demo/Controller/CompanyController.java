@@ -1,14 +1,15 @@
-package com.example.demo;
+package com.example.demo.Controller;
 
-import com.cloudinary.utils.ObjectUtils;
+
+import com.example.demo.CloudinaryConfig;
+import com.example.demo.Department;
+import com.example.demo.DepartmentRepository;
+import com.example.demo.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.util.Map;
 
 @Controller
 public class CompanyController {

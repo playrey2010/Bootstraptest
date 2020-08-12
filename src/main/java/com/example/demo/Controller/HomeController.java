@@ -1,5 +1,9 @@
-package com.example.demo;
+package com.example.demo.Controller;
 
+import com.example.demo.Role;
+import com.example.demo.RoleRepository;
+import com.example.demo.User;
+import com.example.demo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
